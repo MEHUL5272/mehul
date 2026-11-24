@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Mehul Thakor, Full Stack Developer.">
+  <title><%= portfolio.name %> | Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include("partials/header") %>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-copy">
+        <div class="availability"><span class="pulse"></span> OPEN TO LEARNING & OPPORTUNITIES</div>
+        <p class="eyebrow">HELLO, I'M</p>
+        <h1><%= portfolio.name %><span class="accent">.</span></h1>
+        <h2>I'm a <span class="gradient-text"><%= portfolio.role %></span></h2>
+        <p class="hero-description"><%= portfolio.tagline %> I turn ideas into reliable digital experiences with modern web technologies.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my work <span>↗</span></a>
+          <a class="button button-secondary" href="#contact">Contact me</a>
+        </div>
+        <div class="hero-meta">
+          <span><i></i> Based in <%= portfolio.location %></span>
+          <span>Currently pursuing BCA Dual</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="hero-card">
+          <div class="card-top"><span>DEVELOPER PROFILE</span><span class="card-dots">•••</span></div>
+          <div class="avatar">M<span>.</span></div>
+          <h3><%= portfolio.name %></h3>
+          <p><%= portfolio.role %></p>
+          <div class="code-window">
+            <div class="code-head"><span></span><span></span><span></span><small>about.js</small></div>
+            <pre><code><b>const</b> developer = {
+  name: <em>"Mehul"</em>,
+  focus: <em>"Full Stack"</em>,
+  mindset: <em>"Always learning"</em>,
+  build: <em>"Useful things"</em>
+};</code></pre>
+          </div>
+          <div class="floating-chip chip-one">{"{ }"} JavaScript</div>
+          <div class="floating-chip chip-two">✦ Building ideas</div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about">SCROLL TO EXPLORE <span>↓</span></a>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section-heading"><p class="eyebrow">01 / ABOUT ME</p><h2>A little about <span class="gradient-text">myself.</span></h2></div>
+      <div class="about-grid">
+        <div class="about-lead"><span class="quote-mark">“</span><h3>Curious mind.<br><span class="muted">Practical builder.</span></h3></div>
+        <div class="about-content">
+          <p><%= portfolio.about %></p>
+          <div class="about-facts">
+            <div><strong>BCA Dual</strong><span>GLS University</span></div>
+            <div><strong>Full Stack</strong><span>Learning & building</span></div>
+            <div><strong>4 Projects</strong><span>Selected work</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="skills">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">02 / WHAT I WORK WITH</p><h2>Tools in my <span class="gradient-text">toolbox.</span></h2><p class="section-subtitle">Technologies and tools I have worked with during my learning and projects.</p></div>
+        <div class="skills-grid">
+          <% portfolio.skills.forEach(skill => { %>
+            <div class="skill-card"><span class="skill-icon"><%= skill.name.slice(0, 1) %></span><div><strong><%= skill.name %></strong><small><%= skill.level %></small></div><span class="skill-arrow">↗</span></div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="projects">
+      <div class="section-heading"><p class="eyebrow">03 / SELECTED WORK</p><h2>Things I've <span class="gradient-text">worked on.</span></h2><p class="section-subtitle">A selection of academic and personal projects. Some are ongoing or evolving.</p></div>
+      <div class="projects-grid">
+        <% portfolio.projects.forEach(project => { %>
+          <article class="project-card">
+            <div class="project-top"><span class="project-number"><%= project.number %></span><span class="project-symbol">↗</span></div>
+            <p class="project-type"><%= project.type %></p>
+            <h3><%= project.name %></h3>
+            <p class="project-description"><%= project.description %></p>
+            <div class="tag-list"><% project.stack.forEach(item => { %><span><%= item %></span><% }) %></div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="education">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">04 / MY JOURNEY</p><h2>Education & <span class="gradient-text">learning.</span></h2></div>
+        <div class="timeline">
+          <% portfolio.education.forEach((item, index) => { %>
+            <div class="timeline-item"><div class="timeline-marker"><%= String(index + 1).padStart(2, "0") %></div><div class="timeline-content"><h3><%= item.course %></h3><p><%= item.institute %></p><span><%= item.detail %></span></div></div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container contact-section" id="contact">
+      <div class="contact-panel">
+        <div class="contact-copy"><p class="eyebrow">05 / GET IN TOUCH</p><h2>Have an idea?<br><span class="gradient-text">Let's build it.</span></h2><p>I'm always interested in learning, collaborating and discussing new opportunities.</p>
+          <a class="contact-email" href="mailto:<%= portfolio.email %>"><%= portfolio.email %> ↗</a>
+          <p class="contact-phone">+91 <%= portfolio.phone %></p>
+        </div>
+        <form class="contact-form" action="/contact" method="POST">
+          <label>Your name<input type="text" name="name" placeholder="Enter your name" required></label>
+          <label>Your email<input type="email" name="email" placeholder="you@example.com" required></label>
+          <label>Your message<textarea name="message" rows="4" placeholder="Tell me about your idea..." required></textarea></label>
+          <button class="button button-primary" type="submit">Send a message <span>↗</span></button>
+          <small>This opens your email app with your message ready to send.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <%- include("partials/footer") %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
